@@ -5,7 +5,7 @@ class ProductPriceTracker:
     """
     Клас для обробки змін цін товарів за останній місяць
     """
-    
+
     def __init__(self, file_path):
         """
         Ініціалізуємо клас з шляхом до файлу
@@ -13,7 +13,7 @@ class ProductPriceTracker:
         self.file_path = file_path
         self.data = self.read_file()
 
-     def read_file(self):
+    def read_file(self):
         """
         Зчитує дані з файлу та повертає список словників
         """
@@ -39,6 +39,8 @@ class ProductPriceTracker:
          """
         Повертає зміну ціни на товар за останній місяць
         """
+
+        
         last_month = datetime.now() - timedelta(days=30)
         prices = [item["price"] for item in self.data if item["name"] == product_name and item["date"] >= last_month]
         last_month = datetime.now() - timedelta(days=30)
