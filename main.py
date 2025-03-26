@@ -35,7 +35,19 @@ class ProductPriceTracker:
             print("Файл не знайдено")
         return data
 
+    def get_price_change(self, product_name):
+         """
+        Повертає зміну ціни на товар за останній місяць
+        """
+        last_month = datetime.now() - timedelta(days=30)
+        prices = [item["price"] for item in self.data if item["name"] == product_name and item["date"] >= last_month]
+        last_month = datetime.now() - timedelta(days=30)
+        prices = [item["price"] for item in self.data if item["name"] == product_name and item["date"] >= last_month]
+        
+        if len(prices) < 2:
+            return "Недостатньо даних для аналізу"
 
+        return f"Зміна ціни за місяць: {prices[-1] - prices[0]} грн"
 
 if __name__ == "__main__":
     tracker = ProductPriceTracker("products.txt")
